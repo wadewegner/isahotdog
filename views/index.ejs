@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Is a Hotdog a Sandwich?</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div>
+      <div id="question"></div>
+      <!-- Empty div initially -->
+      <div id="answer" class="display-1"></div>
+      <!-- Empty div initially -->
+    </div>
+
+    <script src="/js/typeit.bundle.js"></script>
+    <script>
+      // Ensure the DOM is fully loaded before executing script
+      document.addEventListener("DOMContentLoaded", (event) => {
+        new TypeIt("#question", {
+          speed: 50,
+          waitUntilVisible: true,
+          afterComplete: () => {
+            // Add a 1-second delay before typing the answer
+            setTimeout(() => {
+              new TypeIt("#answer", {
+                speed: 100,
+              })
+                .type("No.")
+                .go();
+            }, 1000); // 1000 milliseconds = 1 second
+          },
+        })
+          .type("Is a hotdog a sandwich?")
+          .go();
+      });
+    </script>
+  </body>
+</html>
