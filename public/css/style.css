@@ -18,3 +18,8 @@ body {
   color: #dc3545; /* Bootstrap's red color */
   margin-top: 20px;
 }
+
+/* Class to hide the cursor */
+.cursor-hidden .ti-cursor {
+  display: none;
+}

@@ -20,12 +20,19 @@
 
     <script src="/js/typeit.bundle.js"></script>
     <script>
-      // Ensure the DOM is fully loaded before executing script
+      // Ensure the DOM is fully loaded before executing the script
       document.addEventListener("DOMContentLoaded", (event) => {
-        new TypeIt("#question", {
+        // Define the typing effect for the question
+        const questionInstance = new TypeIt("#question", {
           speed: 50,
           waitUntilVisible: true,
           afterComplete: () => {
+            // Remove the cursor after typing is complete
+            document.getElementById("question").classList.add("cursor-hidden");
+
+            // Properly destroy the TypeIt instance to stop the cursor
+            questionInstance.destroy();
+
             // Add a 1-second delay before typing the answer
             setTimeout(() => {
               new TypeIt("#answer", {
@@ -35,9 +42,10 @@
                 .go();
             }, 1000); // 1000 milliseconds = 1 second
           },
-        })
-          .type("Is a hotdog a sandwich?")
-          .go();
+        });
+
+        // Start typing the question
+        questionInstance.type("Is a hotdog a sandwich?").go();
       });
     </script>
   </body>
